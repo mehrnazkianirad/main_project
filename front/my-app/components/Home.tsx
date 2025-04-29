@@ -26,7 +26,7 @@ const HomeScreen = () => {
 
   const [request, response, promptAsync] = AuthSession.useAuthRequest(
     {
-      clientId: 'YOUR_SPOTIFY_CLIENT_ID',
+      clientId: 'SPOTIFY_CLIENT_ID',
       scopes: ['user-library-read', 'playlist-read'],
       redirectUri,
     },
