@@ -36,31 +36,6 @@ class LocationMusicView(APIView):
                 return "TestCountry"
             return "Unknown"
 
-    def get_spotify_token():
-        client_id = settings.SPOTIFY_CLIENT_ID
-        client_secret = settings.SPOTIFY_CLIENT_SECRET
-
-        credentials = f"{client_id}:{client_secret}"
-        credentials_b64 = base64.b64encode(credentials.encode()).decode()
-
-        token_url = "https://accounts.spotify.com/api/token"
-        headers = {
-            "Authorization": f"Basic {credentials_b64}",
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-        data = {
-            "grant_type": "client_credentials"
-        }
-
-        try:
-            response = requests.post(token_url, headers=headers, data=data)
-            if response.status_code == 200:
-                return response.json().get("access_token"), None
-            else:
-                return None, response.status_code
-        except requests.RequestException:
-            return None, 503
-
     def fetch_spotify(self, country):
         try:
             token = self.get_spotify_token()
