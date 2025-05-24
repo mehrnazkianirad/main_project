@@ -19,6 +19,9 @@ def get_spotify_token():
     }
 
     response = requests.post(token_url, headers=headers, data=data)
+
     if response.status_code == 200:
         return response.json().get("access_token")
-    return None
+    else:
+        print(f"Spotify Token Error: {response.status_code} - {response.text}")
+        return None

@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
-    YouTubeSearchView, LocationMusicView,
+    LocationMusicView,
     MusicViewSet, RecommendationViewSet, UserMoodViewSet,
     UserLocationViewSet, ExternalAPIViewSet, PlaylistViewSet,
     FavoriteViewSet, PlayHistoryViewSet, SpotifyTokenView
@@ -19,7 +19,7 @@ router.register(r'play-history', PlayHistoryViewSet, basename='play-history')
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('api/youtube-search/', YouTubeSearchView.as_view(), name='youtube-search'),
+    # path('api/youtube-search/', YouTubeSearchView.as_view(), name='youtube-search'),
     path('api/location-music/', LocationMusicView.as_view(), name='location-music'),
     path('api/spotify-token/', SpotifyTokenView.as_view(), name='spotify-token'),
 ]

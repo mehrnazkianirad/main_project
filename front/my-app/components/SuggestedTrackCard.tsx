@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import {suggestedTrackCardStyles} from './style-sheet';
+import { suggestedTrackCardStyles } from './style-sheet';
 import { MusicItem } from '../lib/music'; 
 
 type Props = {
@@ -11,7 +11,11 @@ type Props = {
 const SuggestedTrackCard = ({ track, onPlayPress }: Props) => {
   return (
     <View style={suggestedTrackCardStyles.card}>
-      <Image source={{ uri: track.cover }} style={suggestedTrackCardStyles.image} />
+      <Image 
+        source={{ uri: track.cover }} 
+        style={suggestedTrackCardStyles.image} 
+        resizeMode="contain"  
+      />
       <View style={suggestedTrackCardStyles.info}>
         <Text style={suggestedTrackCardStyles.title}>{track.title}</Text>
         <Text style={suggestedTrackCardStyles.artist}>By {track.artist}</Text>

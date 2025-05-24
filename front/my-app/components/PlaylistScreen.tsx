@@ -1,32 +1,45 @@
 import React, { useEffect } from 'react';
-import { FlatList, Text, Image, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPlaylist } from './actions';
+import { FlatList, Text, Image, View, ActivityIndicator } from 'react-native';
+import { fetchPlaylist } from '../actions/fetchSpotifyTracks';
+import { playlistScreenStyles } from './style-sheet';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 
 const PlaylistScreen = () => {
-  const dispatch = useDispatch();
-  const { playlist, loading, error } = useSelector((state) => state.playlist);
+  const dispatch = useAppDispatch();
+  const { playlist, loading, error } = useAppSelector((state) => state.playlist);
 
   useEffect(() => {
     dispatch(fetchPlaylist('YOUR_PLAYLIST_ID'));
   }, [dispatch]);
 
   if (loading) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={playlistScreenStyles.loaderContainer}>
+        <ActivityIndicator size="large" color="#fff" />
+      </View>
+    );
   }
 
   if (error) {
-    return <Text>Error: {error}</Text>;
+    return (
+      <View style={playlistScreenStyles.errorContainer}>
+        <Text style={playlistScreenStyles.errorText}>Error: {error}</Text>
+      </View>
+    );
   }
 
   return (
-    <View>
+    <View style={playlistScreenStyles.container}>
       <FlatList
-        data={playlist.items}
+        data={playlist}
         renderItem={({ item }) => (
-          <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-            <Image source={{ uri: item.track.album.images[0].url }} style={{ width: 50, height: 50 }} />
-            <Text style={{ marginLeft: 10 }}>{item.track.name}</Text>
+          <View style={playlistScreenStyles.itemContainer}>
+            <Image
+              source={{ uri: item.track.album.images[0].url }}
+              style={playlistScreenStyles.albumImage}
+              resizeMode="contain"  
+            />
+            <Text style={playlistScreenStyles.trackName}>{item.track.name}</Text>
           </View>
         )}
         keyExtractor={(item) => item.track.id}

@@ -8,11 +8,11 @@ const Navbar = () => {
   const navigation = useNavigation();
 
   const handleMenuPress = () => {
-    navigation.dispatch(DrawerActions.toggleDrawer()); 
+    navigation.dispatch(DrawerActions.toggleDrawer());
   };
 
   return (
-    <View style={navbarstyles.container}>
+    <View style={navbarstyles?.container || { padding: 16, backgroundColor: '#1DB954' }}>
       <TouchableOpacity onPress={handleMenuPress}>
         <Ionicons name="menu" size={30} color="#fff" />
       </TouchableOpacity>

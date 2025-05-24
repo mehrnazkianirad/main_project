@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons'; 
-
-import {searchBarStyles} from './style-sheet';
+import { searchBarStyles } from './style-sheet';
 
 type Props = {
   onSearch: (query: string) => void;
@@ -13,7 +12,7 @@ const SearchBar = ({ onSearch }: Props) => {
 
   const handleSubmit = () => {
     if (query.trim().length > 0) {
-      onSearch(query.trim());
+      onSearch(query.trim());  // Trigger onSearch from parent
     }
   };
 
