@@ -27,9 +27,7 @@ SECRET_KEY = 'django-insecure-!fy!^j+@g_s^!-c7$&04^7ls5l$ci&3cdgbts=-n&lm8k%9+f8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['boxi-project.onrender.com']
-
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'boxi-project.onrender.com']
 
 # Application definition
 
@@ -75,6 +73,11 @@ REST_FRAMEWORK = {
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+]
+
+CORS_ALLOWED_ORIGINS =[
+    "http://localhost:8081",
+    # "exp://192.168.1.57:19000",
 ]
 
 

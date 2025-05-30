@@ -19,13 +19,13 @@ from django.urls import path, include
 from django.http import HttpResponse
 
 
-def home(request):
-    return HttpResponse("<h1>Welcome to Boxi Backend 👋</h1><p>Try <a href='/api/music/'>/api/music/</a></p>")
+# def home(request):
+#     return HttpResponse("<h1>Welcome to Boxi Backend 👋</h1><p>Try <a href='/api/music/'>/api/music/</a></p>")
 
 
 
 urlpatterns = [
-    path('', home),
+
     path('admin/', admin.site.urls),
     path('api/auth/', include('accounts.urls')),
     path('api/music/', include('music.urls')),
