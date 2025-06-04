@@ -2,7 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 import { Alert } from 'react-native';
 
 const TOKEN_KEY = 'spotify_token';
-const BASE_URL = 'http://127.0.0.1:8000'; 
+const BASE_URL = 'http://127.0.0.1:8000';
 
 // ------------------- Token Functions -------------------
 
@@ -35,11 +35,12 @@ export const deleteSpotifyToken = async (): Promise<void> => {
 
 export const signupWithEmail = async (email: string, password: string): Promise<boolean> => {
   try {
-    const response = await fetch(`${BASE_URL}/register/`, {
+    const response = await fetch('http://127.0.0.1:8000/register/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
-    });
+    })
+
 
     if (response.ok) {
       return true;
